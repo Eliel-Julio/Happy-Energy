@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simular cartão de crédito</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --azul-happy: #01244A;
+            --amarelo-happy: #fbdc06;
+            --cinza-claro: #f7f7f7;
+            --cinza-escuro: #e0e0e0;
+            --branco: #fff;
+            --sombra: 0 4px 24px rgba(0,0,0,0.10);
+        }
+        html, body {
+            padding: 0;
+            margin: 0;
+            background: var(--cinza-claro);
+            font-family: 'Roboto', 'Lexend', sans-serif;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--amarelo-happy) 70%, #fff 100%);
+            color: var(--azul-happy);
+            height: 80px;
+            font-family: "Lexend", Sans-serif;
+            box-shadow: var(--sombra);
+            padding: 0 32px;
+        }
+        header img {
+            height: 56px;
+            margin-right: 18px;
+            border-radius: 12px;
+            /* background: var(--branco); */
+            /* box-shadow: 0 2px 8px rgba(0,0,0,0.07); */
+        }
+        header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px 8px 16px 8px;
+        }
+        .container {
+            background: var(--branco);
+            border-radius: 18px;
+            box-shadow: var(--sombra);
+            padding: 32px 24px;
+            max-width: 480px;
+            width: 100%;
+            margin-bottom: 32px;
+            animation: fadeIn 0.7s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        label {
+            font-weight: 700;
+            color: var(--azul-happy);
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        input[type="text"] {
+            padding: 10px 14px;
+            border: 1.5px solid var(--cinza-escuro);
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border 0.2s;
+            width: 100%;
+        }
+        input[type="text"]:focus {
+            border-color: var(--azul-happy);
+        }
+        button {
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(1,36,74,0.07);
+            margin-top: 0px;
+        }
+        button:hover {
+            background: var(--amarelo-happy);
+            color: var(--azul-happy);
+        }
+        .icon {
+            font-size: 1.5em;
+            vertical-align: middle;
+            color: var(--azul-happy);
+        }
+        .table-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 320px;
+            box-shadow: var(--sombra);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--branco);
+            font-size: 1em;
+        }
+        thead {
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background: var(--cinza-claro);
+        }
+        tbody tr:nth-child(odd) {
+            background: var(--branco);
+        }
+        th {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        td {
+            font-size: 1em;
+        }
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 18px 0 8px 0;
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+            font-size: 1em;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 6px;
+            }
+            table {
+                font-size: 0.95em;
+            }
+            th, td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="	https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp"></a>
+        <h1><span class="material-icons icon">credit_card</span> Simulação de Cartão</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form>
+                <label for="Valor">Valor da compra</label>
+                <div class="input-group">
+                    <span class="material-icons icon">attach_money</span>
+                    <input type="text" id="Valor" value="10000" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <button type="button" onclick="calcular()">
+                    <span class="material-icons icon">calculate</span> Calcular
+                </button>
+                <button id="expandirBtn" type="button">
+                    <span class="material-icons icon">expand_more</span> Mostrar todas as parcelas
+                </button>
+            </form>
+            <div class="table-container">
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parcelas</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Débito</td><td id="debito">10645.95</td></tr>
+                            <tr><td>Crédito</td><td id="credito">10805.55</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>2X</td><td id="2">5490.45</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>3X</td><td id="3">3687.25</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>4X</td><td id="4">2785.13</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>5X</td><td id="5">2243.85</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>6X</td><td id="6">1882.83</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>7X</td><td id="7">1625.55</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>8X</td><td id="8">1431.81</td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td>9X</td><td id="9">1281.12</td></tr>
+                            <tr><td>10X</td><td id="10">1160.36</td></tr>
+                            <tr><td>11X</td><td id="11">966.19</td></tr>
+                            <tr><td>12X</td><td id="12">979.21</td></tr>
+                            <tr><td>13X</td><td id="13">909.46</td></tr>
+                            <tr><td>14X</td><td id="14">849.60</td></tr>
+                            <tr><td>15X</td><td id="15">797.65</td></tr>
+                            <tr><td>16X</td><td id="16">752.19</td></tr>
+                            <tr><td>17X</td><td id="17">712.02</td></tr>
+                            <tr><td>18X</td><td id="18">676.26</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="footer">
+        &copy; 2025 Happy Energy • Simulador de Cartão de Crédito
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                calcular();
+            }
+        });
+        function calcular(){
+            let valor = parseFloat(document.getElementById("Valor").value.replace(",", "."));
+            if (isNaN(valor) || valor <= 0) {
+                alert("Digite um valor válido!");
+                return;
+            }
+            let deb_cred = {
+                "debito": 1.39/100,
+                "credito": 2.91/100
+            };
+            let taxa = {
+                "2":4.58/100,
+                "3":5.35/100,
+                "4":6.1/100,
+                "5":6.85/100,
+                "6":7.59/100,
+                "7":8.37/100,
+                "8":9.09/100,
+                "9":9.81/100,
+                "10":10.51/100,
+                "11":1.22/100,
+                "12":11.91/100,
+                "13":12.6/100,
+                "14":13.28/100,
+                "15":13.95/100,
+                "16":14.62/100,
+                "17":15.28/100,
+                "18":15.93/100
+            };
+            Object.entries(taxa).forEach(([chave, taxa_]) => {
+                let resultado = ((taxa_ + 1) * 1.05) * valor / chave;
+                let truncado = resultado.toFixed(2);
+                document.getElementById(chave).innerHTML = truncado;
+            });
+            let resultado_debito = ((deb_cred.debito + 1) * 1.05) * valor;
+            let truncado_debito = resultado_debito.toFixed(2);
+            document.getElementById("debito").innerHTML = truncado_debito;
+
+            let resultado_credito = ((deb_cred.credito + 1) * 1.05) * valor;
+            let truncado_credito = resultado_credito.toFixed(2);
+            document.getElementById("credito").innerHTML = truncado_credito;
+        }
+
+        // Botão de expandir parcelas extras
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById("expandirBtn");
+            let expandido = false;
+            btn.addEventListener("click", function() {
+                expandido = !expandido;
+                document.querySelectorAll(".parcela-extra").forEach(tr => {
+                    tr.style.display = expandido ? "" : "none";
+                });
+                btn.innerHTML = expandido
+                    ? '<span class="material-icons icon">expand_less</span> Ocultar parcelas intermediárias'
+                    : '<span class="material-icons icon">expand_more</span> Mostrar todas as parcelas';
+            });
+        });
+    </script>
+</body>
+</html>

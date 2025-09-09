@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombeamento Solar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        :root {
+            --azul-happy: #01244A;
+            --amarelo-happy: #fbdc06;
+            --cinza-claro: #f7f7f7;
+            --cinza-escuro: #e0e0e0;
+            --branco: #fff;
+            --sombra: 0 4px 24px rgba(0,0,0,0.10);
+        }
+        html, body {
+            padding: 0;
+            margin: 0;
+            background: var(--cinza-claro);
+            font-family: 'Roboto', 'Lexend', sans-serif;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--amarelo-happy) 70%, #fff 100%);
+            color: var(--azul-happy);
+            height: 80px;
+            font-family: "Lexend", Sans-serif;
+            box-shadow: var(--sombra);
+            padding: 0 32px;
+        }
+        header img {
+            height: 56px;
+            margin-right: 18px;
+            border-radius: 12px;
+            /* background: var(--branco); */
+            /* box-shadow: 0 2px 8px rgba(0,0,0,0.07); */
+        }
+        header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px 8px 16px 8px;
+        }
+        .container {
+            background: var(--branco);
+            border-radius: 18px;
+            box-shadow: var(--sombra);
+            padding: 32px 24px;
+            max-width: 480px;
+            width: 100%;
+            margin: auto;
+            margin-bottom: 32px;
+            animation: fadeIn 0.7s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        label {
+            font-weight: 700;
+            color: var(--azul-happy);
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        input[type="text"] {
+            padding: 10px 14px;
+            border: 1.5px solid var(--cinza-escuro);
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border 0.2s;
+            width: 100%;
+        }
+        input[type="text"]:focus {
+            border-color: var(--azul-happy);
+        }
+        button {
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(1,36,74,0.07);
+            margin-top: 0px;
+        }
+        button:hover {
+            background: var(--amarelo-happy);
+            color: var(--azul-happy);
+        }
+        .icon {
+            font-size: 1.5em;
+            vertical-align: middle;
+            color: var(--azul-happy);
+        }
+        .table-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 320px;
+            box-shadow: var(--sombra);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--branco);
+            font-size: 1em;
+        }
+        thead {
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        tbody tr:nth-child(even) {
+            background: var(--cinza-claro);
+        }
+        tbody tr:nth-child(odd) {
+            background: var(--branco);
+        }
+        th {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        td {
+            font-size: 1em;
+        }
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 18px 0 8px 0;
+            background: var(--azul-happy);
+            color: var(--amarelo-happy);
+            font-size: 1em;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 6px;
+            }
+            table {
+                font-size: 0.95em;
+            }
+            th, td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="	https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp"></a>
+        <h1>Bombeamento Solar</h1>
+    </header>
+        <main>
+        </main><div class="container">
+            <form>
+                    <label for="Valor">Potencia da bomba (CV)</label>
+                    <div class="input-group">
+                        
+                        <span class="material-symbols-outlined icon">water_pump</span>
+                        <input type="text" id="Valor" value="10" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <label style="font-weight:700; color:var(--azul-happy); margin-bottom:4px;">Tipo de bomba</label>
+                        <div id="bomba-group" style="display:flex; gap:12px;">
+                            <button type="button" class="bomba-btn" data-value="Monofasica" style="background:var(--cinza-escuro); color:var(--azul-happy); border:none; border-radius:8px; padding:10px 18px; font-weight:700; cursor:pointer; transition:background 0.2s, color 0.2s;">Monofasica</button>
+                            <button type="button" class="bomba-btn" data-value="Trifasica" style="background:var(--cinza-escuro); color:var(--azul-happy); border:none; border-radius:8px; padding:10px 18px; font-weight:700; cursor:pointer; transition:background 0.2s, color 0.2s;">Trifasica</button>
+                        </div>
+                    </div>
+                    
+                    <label for="tempo">Tempo de uso (h)</label>
+                    <div class="input-group">
+                        <span class="material-icons icon">alarm</span>
+                        <input type="text" id="tempo" value="6" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+                    <label for="potencia">Potencia dos módulos (W)</label>
+                    <div class="input-group">
+                        <span class="material-icons icon">solar_power</span>
+                        <input type="text" id="potencia" value="610" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+                    <button type="button" onclick="calcular()">
+                        <span class="material-icons icon">calculate</span> Calcular
+                    </button>
+                </form>
+            <div id="resultado" style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
+                <p id="numero de modulos" style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Número de módulos: 21</p>
+                <p id="potencia do inversor" style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Potência do sistema: 12.51 kWp</p>
+            </div>
+            </div></main>
+</body>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                calcular();
+            }
+        });
+        const bombaBtns = document.querySelectorAll('.bomba-btn');
+        let bombaSelecionada = null;
+        bombaBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                bombaBtns.forEach(b => {
+                    b.style.background = 'var(--cinza-escuro)';
+                    b.style.color = 'var(--azul-happy)';
+                });
+                this.style.background = 'var(--azul-happy)';
+                this.style.color = 'var(--amarelo-happy)';
+                bombaSelecionada = this.getAttribute('data-value');
+            });
+        });
+    function calcular(){
+        const potenciaCV = parseFloat(document.getElementById('Valor').value) || 0;
+        const tempoHoras = parseFloat(document.getElementById('tempo').value) || 6;
+        const Potencia_modulos = parseFloat(document.getElementById('potencia').value) || 610;
+        const potenciakWmec = potenciaCV * 0.736;
+        let fatorTempo = {
+            6:1.7,
+            7:2.0,
+            8:2.3,
+            9:2.5
+        };
+        let Nstrings = {
+            "Monofasica": 7,
+            "Trifasica": 14
+        }
+        let kWp = potenciakWmec * fatorTempo[tempoHoras];
+        let Nmodulos = (Math.ceil(kWp * 1000 / Potencia_modulos));
+        document.getElementById('numero de modulos').innerHTML = `Número de módulos: ${Nmodulos}`;
+        document.getElementById('potencia do inversor').innerHTML = `Potência do sistema: ${kWp.toFixed(2)} kWp`;
+    }
+</script>
+</html>
