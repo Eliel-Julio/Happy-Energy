@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial • Happy Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp">
+        <h1>Bem-vindo à Happy Energy</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form action="">
+                <label for="Valor">Valor da compra</label>
+                <div class="input-group">
+                    <span class="material-icons icon">attach_money</span>
+                    <input type="text" id="Valor" name="Valor" value="10000" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <label for="Entrada">Entrada</label>
+                <div class="input-group">
+                    <span class="material-icons icon">account_balance_wallet</span>
+                    <input type="text" id="Entrada" name="Entrada" value="2000" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <label for="Taxa">Taxa de juros a.m</label>
+                <div class="input-group">
+                    <span class="material-icons icon">percent</span>
+                    <input type="text" id="Taxa" name="Taxa" value="3.0" autocomplete="off" inputmode="decimal" pattern="[0-9]*\.?[0-9]*">
+                </div>
+                <label for="Parcelas">Número de parcelas</label>
+                <div class="input-group">
+                    <span class="material-icons icon">format_list_numbered</span>
+                    <input type="text" id="Parcelas" name="Parcelas" value="24" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <label for="Potencia">Potência do kit (kWp)</label>
+                <div class="input-group">
+                    <span class="material-icons icon">solar_power</span>
+                    <input type="text" id="Potencia" name="Potencia" value="12.51" autocomplete="off" inputmode="decimal" pattern="[0-9]*\.?[0-9]*">
+                </div>
+                <div class="campo-extra" style="display:none;">
+                    <label for="Tarifa">Tarifa de energia (R$/kWh)</label>
+                    <div class="input-group">
+                        <span class="material-icons icon">bolt</span>
+                        <input type="text" id="Tarifa" name="Tarifa" value="1.32" autocomplete="off" inputmode="decimal" pattern="[0-9]*\.?[0-9]*">
+                    </div>
+                </div>
+                <div id="state" onclick="expandir()" style="display:inline-block; margin:12px 0; color:var(--azul-happy); cursor:pointer; font-size:0.98em; font-weight:500; transition:color 0.2s;">
+                    <span class="material-icons icon" id="expand-icon" style="font-size:1em; vertical-align:middle; transition:transform 0.2s;">expand_more</span>
+                    <span id="state-text" data-state="expandir" style="margin-left:6px; vertical-align:middle;">Expandir</span>
+                </div>
+                <style>
+                    #state:hover {
+                        color: #0056b3;
+                        text-decoration: underline;
+                    }
+                    #state:hover #expand-icon {
+                        transform: scale(1.15);
+                    }
+                </style>
+                <button type="button" onclick="calcular()">
+                    <span class="material-icons icon">calculate</span> Calcular
+                </button>
+            </form>
+            <div id="resultado" style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
+                <p id="valor-parcela" style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Valor das Parcelas: R$ 472.38</p>
+                <p id="economia-mensal" style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Economia mensal: R$ 1822.96</p>
+            </div>
+                <a href="index.html">
+                    <button type="button" style="width: 100%;">
+                        <span class="material-icons icon">arrow_back</span> Voltar
+                    </button>
+                </a>
+            </div>
+        </div> 
+    </main>
+    <footer class="footer">
+        &copy; 2025 Happy Energy • Todos os direitos reservados
+    </footer>
+</body>
+<script>
+    function expandir(){
+        const stateDiv = document.getElementById('state');
+        const stateText = document.getElementById('state-text');
+        const expandIcon = document.getElementById('expand-icon');
+        const camposExtras = document.querySelectorAll('.campo-extra');
+
+        // use data-state (mais seguro para atributos customizados)
+        const current = (stateText.getAttribute('data-state') || '').toString().toLowerCase();
+
+        if (current === 'expandir' || stateText.textContent.trim().toLowerCase() === 'expandir') {
+            stateText.textContent = 'Recolher';
+            stateText.setAttribute('data-state', 'recolher');
+            camposExtras.forEach(campo => campo.style.display = 'block');
+            expandIcon.style.transform = 'rotate(180deg)';
+        } else {
+            stateText.textContent = 'Expandir';
+            stateText.setAttribute('data-state', 'expandir');
+            camposExtras.forEach(campo => campo.style.display = 'none');
+            expandIcon.style.transform = '';
+        }
+    }
+    function calcular(){
+        const valor = parseFloat(document.getElementById('Valor').value) || 0;
+        const entrada = parseFloat(document.getElementById('Entrada').value) || 0;
+        const taxa = parseFloat(document.getElementById('Taxa').value) / 100 || 0;
+        const parcelas = parseInt(document.getElementById('Parcelas').value) || 1;
+        const potencia = parseFloat(document.getElementById('Potencia').value) || 0;
+        const tarifa = parseFloat(document.getElementById('Tarifa').value) || 0;
+        const valorParcelaElem = document.getElementById('valor-parcela');
+        const economiaMensalElem = document.getElementById('economia-mensal');
+        const taxageral = Math.pow(1 + taxa, parcelas);
+
+        if(parcelas <= 0){
+            alert("Número de parcelas deve ser maior que zero.");
+            return;
+        }
+
+        const valorFinanciado = valor - entrada;
+        const valorParcela = (valorFinanciado * taxa * taxageral) / (taxageral - 1);
+        const totalPago = valorParcela * parcelas;
+
+        const geracao = potencia * 139;
+        const economiaMensal = (geracao * tarifa)-valorParcela;
+
+        valorParcelaElem.innerHTML = `Valor das Parcelas: R$ ${valorParcela.toFixed(2)}`;
+        economiaMensalElem.innerHTML = `Economia mensal: R$ ${economiaMensal.toFixed(2)}`;
+
+        // alert(`Valor da parcela: R$ ${valorParcela.toFixed(2)}\nTotal pago: R$ ${totalPago.toFixed(2)}`);
+
+    }
+</script>
+</html>
