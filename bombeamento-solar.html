@@ -12,12 +12,9 @@
     <!-- Favicon (using image.png as 32x32 icon) -->
     <link rel="icon" href="image.png" type="image/png" sizes="32x32">
 </head>
-<body>
-    <header>
-        <a href="index.html"><img src="	https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp"></a>
-        <h1>Bombeamento Solar</h1>
-    </header>
-        <main>
+<body onload="definitions()">
+    <header class="header" content="Bombeamento Solar"></header>
+    <main>
         <div class="container">
             <form>
                     <label for="Valor">Potencia da bomba (CV)</label>
@@ -59,9 +56,7 @@
             </div>
         </div>
         </main>
-        <footer class="footer">
-        &copy; 2025 <a style="color: #fcde1f;" href="https://happyenergy.com.br/">Happy Energy</a> • Todos os direitos reservados
-    </footer>
+        <footer class="footer"></footer>
 </body>
     <script>
         const form = document.querySelector('form');
@@ -105,4 +100,5 @@
         document.getElementById('potencia do inversor').innerHTML = `Potência do sistema: ${kWp.toFixed(2)} kWp`;
     }
 </script>
+<script src="templates.js"></script>
 </html>
