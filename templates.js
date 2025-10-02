@@ -13,17 +13,26 @@ function footer(){
 }
 
 function header(){
+    
     const elements = Array.from(document.querySelectorAll('.header'))
-    const str = '<img src="https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp"><h1>'
-
+    const imgSrc = 'https://happyenergy.com.br/wp-content/uploads/2024/06/logotipo-happy-solar-AZUL.webp'
     if (elements.length === 0) return
 
     elements.forEach(el => {
-        let h1 = el.getAttribute('content') || 'Bem-vindo à Happy Energy';
-        el.innerHTML = str+h1+'</h1>'
-    })
-    return
+    const img = document.createElement('img')
+    const a = document.createElement('a')
+    a.href = 'index.html'
+    a.appendChild(img)
+    img.src = imgSrc
+    const h1 = document.createElement('h1')
+    const text = el.getAttribute('content') || 'Bem-vindo à Happy Energy'
+    h1.textContent = text
+    el.innerHTML = ''
+    el.appendChild(a)
+    el.appendChild(h1)
+})
 
+return
 }
 
 function definitions(){
