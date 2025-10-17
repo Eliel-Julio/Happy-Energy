@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simular cartão de crédito</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Favicon (using image.png as 32x32 icon) -->
+    <link rel="icon" href="image.png" type="image/png" sizes="32x32">
+</head>
+<body onload="definitions()">
+    <header class="header" content="Simulação de Cartão"></header>
+    <main>
+        <div class="container">
+            <form>
+                <label for="custoModulo">Valor de custo(R$)</label>
+                <div class="input-group">
+                    <span class="material-icons icon">attach_money</span>
+                    <input type="text" id="custoModulo" value="500" autocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 500,00">
+                </div>
+
+                <label for="quantidadeModulos">Quantidade de módulos</label>
+                <div class="input-group">
+                    <span class="material-icons icon">grid_on</span>
+                    <input type="number" id="quantidadeModulos" value="10" min="1" step="1" inputmode="numeric">
+                </div>
+
+                <button type="button" onclick="calcular()">
+                    <span class="material-icons icon">calculate</span> Calcular
+                </button>
+            </form>
+            <p style="margin-top:8px">Preço final (custo total): <strong id="precoFinal">R$ 0,00</strong></p>
+        </div>
+    </main>
+    <footer class="footer"></footer>
+    <script>
+        function calcular(){
+            const custoInput = document.getElementById('custoModulo');
+            const quantidadeInput = document.getElementById('quantidadeModulos');
+            const precoFinalDisplay = document.getElementById('precoFinal');
+
+            const custo = parseFloat(custoInput.value.replace(',', '.'));
+            const quantidade = parseInt(quantidadeInput.value, 10);
+
+            const Art = 103.9;
+            const extras = 300;
+            const taxas = {
+                "Margem": 0.35,
+                "Imposto": 0.05,
+                "comissionamento": 0.05
+            };
+
+            const total = (quantidade*70 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
+
+
+
+            precoFinalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            
+        }
+    </script>
+    <script src="templates.js"></script>
+</body>
+</html>
