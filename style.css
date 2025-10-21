@@ -91,7 +91,7 @@ label {
     gap: 8px;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], select{
     padding: 10px 14px;
     border: 1.5px solid var(--cinza-escuro);
     border-radius: 8px;
@@ -99,9 +99,9 @@ input[type="text"], input[type="number"] {
     outline: none;
     transition: border 0.2s;
     width: 100%;
-        &:focus {
+    &:focus {
         border-color: var(--azul-happy);
-}
+    }
 }
 
 

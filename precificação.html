@@ -20,7 +20,7 @@
                 <label for="custoModulo">Valor de custo(R$)</label>
                 <div class="input-group">
                     <span class="material-icons icon">attach_money</span>
-                    <input type="text" id="custoModulo" value="15000" autocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 15000,00">
+                    <input type="text" id="custoModulo" value="15000,00" azutocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 15000,00">
                 </div>
 
                 <label for="quantidadeModulos">Quantidade de módulos</label>
@@ -29,11 +29,30 @@
                     <input type="number" id="quantidadeModulos" value="10" min="1" step="1" inputmode="numeric" placeholder="Ex: 10">
                 </div>
 
-                <button type="button" onclick="calcular()">
+                <label for="Potencia">Potência dos Módulos (W)</label>
+                <div class="input-group">
+                    <span class="material-icons icon">solar_power</span>
+                    <select id="Potencia" name="Potencia">
+                        <option value="550">550</option>
+                        <option value="595">595</option>
+                        <option value="600">600</option>
+                        <option value="610" selected>610</option>
+                        <option value="615">615</option>
+                        <option value="650">650</option>
+                        <option value="700">700</option>
+                        <option value="800">800</option>
+                    </select>
+                </div>
+
+                <button type="button" onclick="calcular()" class="button">
                     <span class="material-icons icon">calculate</span> Calcular
                 </button>
             </form>
-            <p style="margin-top:8px">Preço final (custo total): <strong id="precoFinal">R$ 23968,64</strong></p>
+            <div style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
+                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 23968,64</strong></p>
+                <p style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Geração estimada: <strong id="geracao">847,90 Kwh/mês</strong></p>
+            </div>
+            
         </div>
     </main>
     <footer class="footer"></footer>
@@ -41,7 +60,9 @@
         function calcular(){
             const custoInput = document.getElementById('custoModulo');
             const quantidadeInput = document.getElementById('quantidadeModulos');
+            const potenciaInput = document.getElementById('Potencia');
             const precoFinalDisplay = document.getElementById('precoFinal');
+            const geracaolDisplay = document.getElementById('geracao');
 
             const custo = parseFloat(custoInput.value.replace(',', '.'));
             const quantidade = parseInt(quantidadeInput.value, 10);
@@ -55,12 +76,18 @@
             };
 
             const total = (quantidade*70 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
-
+            const geracao = (parseFloat(potenciaInput.value)*quantidade)*0.139;
 
 
             precoFinalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            geracaolDisplay.textContent = `${geracao.toFixed(2).replace('.', ',')} Kwh/mês`;
             
         }
+
+        document.querySelector('form').addEventListener('input', function(event) {
+            event.preventDefault();
+            calcular();
+        });
     </script>
     <script src="templates.js"></script>
 </body>
