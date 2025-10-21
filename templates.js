@@ -35,29 +35,23 @@ function header(){
 return
 }
 
+function BackButton(){
+    const container = document.getElementById('container')
+    const button = document.createElement('button')
+    const link = document.createElement('a')
+    
+    link.href = 'index.html'
+    
+    button.innerHTML = '<span class="material-icons icon">arrow_back</span> Voltar'
+    button.style.width = '100%'
+    button.type = 'button'
+    
+    link.appendChild(button)
+    container.appendChild(link)
+}
+
 function definitions(){
     footer()
     header()
-}
-
-/**
- * Calcula o custo final com base no valor unitário (custo) e na quantidade de módulos.
- * Aceita números ou strings com vírgula/point e valida entradas.
- * Retorna um Number (total) ou NaN se as entradas forem inválidas.
- * Exemplo: calculateFinalCost('1234,50', '10') => 12345
- */
-function calculateFinalCost(custo, quantidade){
-    // normaliza entrada: aceita strings com vírgula
-    const parse = v => {
-        if (typeof v === 'string') v = v.replace(/\s+/g, '').replace(',', '.')
-        return Number(v)
-    }
-
-    const c = parse(custo)
-    const q = parse(quantidade)
-
-    // valida
-    if (!isFinite(c) || !isFinite(q) || c < 0 || q < 0) return NaN
-
-    return c * q
+    BackButton()
 }

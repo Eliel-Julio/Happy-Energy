@@ -15,7 +15,7 @@
 <body onload="definitions()">
     <header class="header" content="Bombeamento Solar"></header>
     <main>
-        <div class="container">
+        <div id="container" class="container">
             <form>
                     <label for="Valor">Potencia da bomba (CV)</label>
                     <div class="input-group">
@@ -48,11 +48,6 @@
             <div id="resultado" style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
                 <p id="numero de modulos" style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Número de módulos: 21</p>
                 <p id="potencia do inversor" style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Potência do sistema: 12.51 kWp</p>
-                <a href="index.html">
-                    <button type="button" style="width: 100%;">
-                        <span class="material-icons icon">arrow_back</span> Voltar
-                    </button>
-                </a>
             </div>
         </div>
         </main>
@@ -100,5 +95,6 @@
         document.getElementById('potencia do inversor').innerHTML = `Potência do sistema: ${kWp.toFixed(2)} kWp`;
     }
 </script>
+<script src="Utiles.js"></script>
 <script src="templates.js"></script>
 </html>

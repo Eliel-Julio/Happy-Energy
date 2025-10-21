@@ -14,7 +14,7 @@
 <body onload="definitions()">
     <header class="header" content="Simulação de Boleto"></header>
     <main>
-        <div class="container">
+        <div id="container" class="container">
             <div>teste</div>
             <form action="">
                 <label for="Valor">Valor da compra</label>
@@ -70,11 +70,6 @@
                 <p id="valor-parcela" style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Valor das Parcelas: R$ 953.17</p>
                 <p id="economia-mensal" style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Economia mensal: R$ 613.75</p>
             </div >
-                <a href="index.html">
-                    <button type="button" style="width: 100%;">
-                        <span class="material-icons icon">arrow_back</span> Voltar
-                    </button>
-                </a>
             </div>
         </div> 
     </main>
@@ -132,5 +127,6 @@
 
     }
 </script>
+<script src="Utiles.js"></script>
 <script src="templates.js"></script>
 </html>
