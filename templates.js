@@ -55,3 +55,13 @@ function definitions(){
     header()
     BackButton()
 }
+
+function priceInputMask(value){
+    // Remove tudo o que não é dígito
+    value = value.replace(/\D/g, '');
+    // Adiciona a vírgula antes dos dois últimos dígitos
+    value = value.replace(/(\d{2})$/, ',$1');
+    // Adiciona o ponto a cada três dígitos antes da vírgula
+    value = value.replace(/(\d)(?=(\d{3})+\,)/g, '$1.');
+    return value;
+}
