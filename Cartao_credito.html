@@ -74,7 +74,7 @@
             }
         });
         function calcular(){
-            let valor = parseFloat(document.getElementById("Valor").value.replace(",", "."));
+            let valor = parseFloat(document.getElementById("Valor").value.replace('.', '').replace(",","."));
             if (isNaN(valor) || valor <= 0) {
                 alert("Digite um valor válido!");
                 return;

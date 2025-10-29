@@ -25,7 +25,7 @@
                 <label for="Entrada">Entrada</label>
                 <div class="input-group">
                     <span class="material-icons icon">account_balance_wallet</span>
-                    <input type="text" id="Entrada" name="Entrada" value="4035.60" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                    <input class="priceInputMask" type="text" id="Entrada" name="Entrada" value="4035.60" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
                 </div>
                 <label for="Taxa">Taxa de juros a.m</label>
                 <div class="input-group">
@@ -98,8 +98,8 @@
         }
     }
     function calcular(){
-        const valor = parseFloat(document.getElementById('Valor').value) || 0;
-        const entrada = parseFloat(document.getElementById('Entrada').value) || 0;
+        const valor = parseFloat(document.getElementById('Valor').value.replace('.', '').replace(",",".")) || 0;
+        const entrada = parseFloat(document.getElementById('Entrada').value.replace('.', '').replace(",",".")) || 0;
         const taxa = parseFloat(document.getElementById('Taxa').value) / 100 || 0;
         const parcelas = parseInt(document.getElementById('Parcelas').value) || 1;
         const potencia = parseFloat(document.getElementById('Potencia').value) || 0;

@@ -65,7 +65,7 @@
             const precoFinalDisplay = document.getElementById('precoFinal');
             const geracaolDisplay = document.getElementById('geracao');
 
-            const custo = parseFloat(custoInput.value.replace(',', '.'));
+            const custo = parseFloat(custoInput.value.replace('.', '').replace(",","."));
             const quantidade = parseInt(quantidadeInput.value, 10);
 
             const Art = 103.9;
