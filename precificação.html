@@ -20,7 +20,7 @@
                 <label for="custoModulo">Valor de custo(R$)</label>
                 <div class="input-group">
                     <span class="material-icons icon">attach_money</span>
-                    <input class="priceInputMask" type="text" id="custoModulo" value="15000,00" azutocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 15000,00" class="priceInputMask">
+                    <input class="priceInputMask" type="text" id="custoModulo" value="15.000,00" azutocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 15000,00" class="priceInputMask">
                 </div>
 
                 <label for="quantidadeModulos">Quantidade de módulos</label>
@@ -28,21 +28,11 @@
                     <span class="material-icons icon">grid_on</span>
                     <input type="number" id="quantidadeModulos" value="10" min="1" step="1" inputmode="numeric" placeholder="Ex: 10">
                 </div>
-
+                
                 <label for="Potencia">Potência dos Módulos (W)</label>
                 <div class="input-group">
                     <span class="material-icons icon">solar_power</span>
-                    <select id="Potencia" name="Potencia">
-                        <option value="550">550</option>
-                        <option value="595">595</option>
-                        <option value="600">600</option>
-                        <option value="605">605</option>
-                        <option value="610" selected>610</option>
-                        <option value="615">615</option>
-                        <option value="650">650</option>
-                        <option value="700">700</option>
-                        <option value="800">800</option>
-                    </select>
+                    <input type="number" id="Potencia" value="610" min="400" step="5" inputmode="numeric" placeholder="Ex: 610">
                 </div>
 
                 <button type="button" onclick="calcular()" class="button">
@@ -79,12 +69,9 @@
             const total = (quantidade*70 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
             const geracao = (parseFloat(potenciaInput.value)*quantidade)*0.139;
 
-
             precoFinalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-            geracaolDisplay.textContent = `${geracao.toFixed(2).replace('.', ',')} Kwh/mês`;
-            
+            geracaolDisplay.textContent = `${geracao.toFixed(2).replace('.', ',')} Kwh/mês`; 
         }
-
     </script>
     <script src="Utiles.js"></script>
     <script src="templates.js"></script>
