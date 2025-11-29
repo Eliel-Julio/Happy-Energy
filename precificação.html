@@ -11,6 +11,39 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Favicon (using image.png as 32x32 icon) -->
     <link rel="icon" href="image.png" type="image/png" sizes="32x32">
+    <style>
+        #UserAlert{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 20px;
+            justify-content: center;
+            text-align: center;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(220,163,158,0.12), rgba(220,163,158,0.04));
+            color: #5b1f1a;
+            box-shadow: 0 6px 18px rgba(1,36,74,0.08);
+            /* border-left: 4px solid var(--azul-happy, #0b66ff); */
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.3;
+            max-width: 100%;
+            transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+            will-change: transform, opacity;
+            margin-top: 12px;
+        }
+
+        /* animação sutil, respeita preferência por reduzir movimento */
+        @media (prefers-reduced-motion: no-preference) {
+            #UserAlert {
+                animation: slideIn 360ms ease both;
+            }
+            @keyframes slideIn {
+                from { transform: translateY(6px); opacity: 0; }
+                to   { transform: translateY(0);     opacity: 1; }
+            }
+        }
+    </style>
 </head>
 <body onload="definitions()">
     <header class="header" content="Precificação de Kit"></header>
@@ -39,8 +72,9 @@
                     <span class="material-icons icon">calculate</span> Calcular
                 </button>
             </form>
+            <div id="UserAlert">Preços de Black Friday</div>
             <div style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
-                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 23.968,64</strong></p>
+                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 21.981,82</strong></p>
                 <p style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Geração estimada: <strong id="geracao">847,90 Kwh/mês</strong></p>
             </div>
             
@@ -61,9 +95,9 @@
             const Art = 103.9;
             const extras = 300;
             const taxas = {
-                "Margem": 0.35,
+                "Margem": 0.3,
                 "Imposto": 0.05,
-                "comissionamento": 0.05
+                "comissionamento": 0.0
             };
 
             const total = (quantidade*70 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
