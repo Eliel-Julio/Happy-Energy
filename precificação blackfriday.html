@@ -72,8 +72,9 @@
                     <span class="material-icons icon">calculate</span> Calcular
                 </button>
             </form>
+            <div id="UserAlert">Preços de Black Friday</div>
             <div style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
-                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 23.968,64</strong></p>
+                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 21.981,82</strong></p>
                 <p style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Geração estimada: <strong id="geracao">847,90 Kwh/mês</strong></p>
             </div>
             
@@ -94,9 +95,9 @@
             const Art = 103.9;
             const extras = 300;
             const taxas = {
-                "Margem": 0.35,
+                "Margem": 0.3,
                 "Imposto": 0.05,
-                "comissionamento": 0.05
+                "comissionamento": 0.0
             };
 
             const total = (quantidade*70 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));

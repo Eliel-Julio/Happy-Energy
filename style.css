@@ -140,7 +140,14 @@ main {
                 &:hover{
                     background: var(--amarelo-happy);
                     color: var(--azul-happy);
-                } 
+                }
+                &.blackfriday:hover{
+                    background: black;
+                    color: var(--branco); 
+                    span{
+                        color: var(--branco);
+                    }
+                }
             }
         }
         button{
