@@ -3,7 +3,7 @@ function footer(){
 
     if (elements.length === 0) return
 
-    const str = '&copy; 2025 <a style="color: #fcde1f;" href="https://happyenergy.com.br/">Happy Energy</a> • Todos os direitos reservados'
+    const str = '&copy; 2026 <a style="color: #fcde1f;" href="https://happyenergy.com.br/">Happy Energy</a> • Todos os direitos reservados'
 
     elements.forEach(el => {
         el.innerHTML = str
