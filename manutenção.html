@@ -59,6 +59,10 @@
                     <input type="checkbox" id="AddMonitorim" onchange="calcular()" checked>
                     <label for="AddMonitorim" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Adicionar Monitoramento</label>
                 </div>
+                <div style="margin-top: 16px; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="AddLimpeza" onchange="calcular()" checked>
+                    <label for="AddLimpeza" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Adicionar Limpeza</label>
+                </div>
             </div>
 
                 <label for="quantidadeModulos">Quantidade de módulos</label>
@@ -96,6 +100,7 @@
 
             const Isclient = document.getElementById("Isclient").checked;
             const AddMonitorim = document.getElementById("AddMonitorim").checked;
+            const fatorLimpeza = document.getElementById("AddLimpeza").checked?1:0;
             const nModulos = document.getElementById("quantidadeModulos").value;
             const nPotencia = document.getElementById("Potencia").value;
             
@@ -107,7 +112,7 @@
             let Limpeza = Isclient ? 
                 (AddMonitorim ? consts.ConstLimpSemLucro * nModulos : consts.ConstLimpComLucro * nModulos) :
                 consts.ConstLimpComLucro * nModulos;
-            let total = (Math.round((Monitoramento + Limpeza) / 5) * 5)-0.05;
+            let total = (Math.round((Monitoramento*12 + Limpeza*fatorLimpeza) / 5) * 5)-0.05;
 
             precoFinalDisplay.textContent = `R$ ${priceInputMask(total.toFixed(2))}`;
             geracaolDisplay.textContent = `${(nModulos * nPotencia * consts.ConstIrad).toFixed(2).replace('.', ',')} Kwh/mês`;
