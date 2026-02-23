@@ -54,6 +54,7 @@ function definitions(){
     footer()
     header()
     BackButton()
+    calcular()
 }
 
 function priceInputMask(value){

@@ -45,7 +45,7 @@
         }
     </style>
 </head>
-<body onload="definitions(), calcular()">
+<body onload="definitions()">
     <header class="header" content="Precificação de Kit"></header>
     <main>
         <div id="container" class="container">
@@ -105,6 +105,7 @@
             };
 
             const total = (quantidade*60 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
+            
             const geracao = (parseFloat(potenciaInput.value)*quantidade)*0.139;
 
             precoFinalDisplay.textContent = `R$ ${priceInputMask(total.toFixed(2))}`;
