@@ -67,6 +67,16 @@
                     <span class="material-icons icon">solar_power</span>
                     <input type="number" id="Potencia" value="610" min="400" step="5" inputmode="numeric" placeholder="Ex: 610">
                 </div>
+                
+                <label for="Estrutura">Estrutura de Fixação</label>
+                <div class="input-group">
+                    <span class="material-icons icon">construction</span>
+                    <select type="text" id="Estrutura" >
+                        <option value="Fibrocimento">Fibrocimento</option>
+                        <option value="Solo">Solo</option>
+                    </select>
+                </div>
+                
 
                 <button type="button" onclick="calcular()" class="button">
                     <span class="material-icons icon">calculate</span> Calcular
@@ -94,19 +104,43 @@
 
             const custo = parseFloat(custoInput.value.replace('.', '').replace(",","."));
             const quantidade = parseInt(quantidadeInput.value, 10);
+            const StructureType = document.getElementById('Estrutura').value;
             const semComissionamento = document.getElementById('semComissionamento').checked;
 
-            const Art = 108.39;
-            const extras = 241.61;
-            const taxas = {
-                "Margem": 0.35,
-                "Imposto": 0.05,
-                "comissionamento": semComissionamento ? 0 : 0.05
-            };
+            const consts = {
+                iradiação:0.139,
+                Art:108.39,
+                Extras:{
+                    Fibrocimento:241.61,
+                    Solo:241.61+350
+                },
+                instalacao_por_Modulos:{
+                    Fibrocimento:60,
+                    Solo:120
+                },
+                taxas:{
+                    "Margem": 0.35,
+                    "Imposto": 0.05,
+                    "comissionamento": semComissionamento ? 0 : 0.05
+                }
+            }
 
-            const total = (quantidade*60 + Art + extras + custo )*((1+taxas["Margem"])*(1+taxas["Imposto"])*(1+taxas["comissionamento"]));
+            function totalTax(taxas){
+                let total = 1;
+                Object.keys(taxas).forEach(key => {
+                    total *= (1 + taxas[key]);
+                });
+                return total;
+            }
+
+            const total = (
+                quantidade*consts.instalacao_por_Modulos[StructureType]+
+                consts.Art+
+                consts.Extras[StructureType]+
+                custo)*
+                totalTax(consts.taxas);
             
-            const geracao = (parseFloat(potenciaInput.value)*quantidade)*0.139;
+            const geracao = (parseFloat(potenciaInput.value)*quantidade)*consts.iradiação;
 
             precoFinalDisplay.textContent = `R$ ${priceInputMask(total.toFixed(2))}`;
             geracaolDisplay.textContent = `${geracao.toFixed(2).replace('.', ',')} Kwh/mês`; 
