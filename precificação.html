@@ -50,6 +50,15 @@
     <main>
         <div id="container" class="container">
             <form>
+                <label for="Modalidade">Modalidade de Precificação</label>
+                <div class="input-group">
+                    <span class="material-icons icon">model_training</span>
+                    <select type="text" id="Modalidade" >
+                        <option value="Normal">Normal</option>
+                        <option value="Promocional">Promocional</option>
+                    </select>
+                </div>
+
                 <label for="custoModulo">Valor de custo(R$)</label>
                 <div class="input-group">
                     <span class="material-icons icon">attach_money</span>
@@ -106,6 +115,7 @@
             const custo = parseFloat(custoInput.value.replace('.', '').replace(",","."));
             const quantidade = parseInt(quantidadeInput.value, 10);
             const StructureType = document.getElementById('Estrutura').value;
+            const Modalidade = document.getElementById('Modalidade').value;
             const semComissionamento = document.getElementById('semComissionamento').checked;
 
             const consts = {
@@ -121,11 +131,17 @@
                     Solo:120,
                     Laje:120
                 },
-                taxas:{
+                taxas:
+                {"Normal":{
                     "Margem": 0.35,
                     "Imposto": 0.05,
                     "comissionamento": semComissionamento ? 0 : 0.05
-                }
+                },
+                "Promocional":{
+                    "Margem": 0.30,
+                    "Imposto": 0.07,
+                    "comissionamento": semComissionamento ? 0 : 0.05
+                }}
             }
 
             function totalTax(taxas){
@@ -141,7 +157,7 @@
                 consts.Art+
                 consts.Extras[StructureType]+
                 custo)*
-                totalTax(consts.taxas);
+                totalTax(consts.taxas[Modalidade]);
             
             const geracao = (parseFloat(potenciaInput.value)*quantidade)*consts.iradiação;
 
