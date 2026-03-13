@@ -13,6 +13,40 @@
     <link rel="icon" href="image.png" type="image/png" sizes="32x32">
 </head>
 <body onload="definitions()">
+    <style>
+        .total {
+            font-size: 0.7em;
+            color: #555;
+            padding: 0;
+            margin-left: 8px;
+            margin-right: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: inline-block;
+            line-height: 0.5;
+        }
+        .sub-total {
+            font-size: 1em;
+            color: #000;
+            padding: 0;
+            margin: 0;
+            line-height: 0.5;
+        }
+        td:not(.C1, .parcela-extra) {
+            display: flex;
+            flex-direction: row;
+            align-items: first baseline;
+            gap: 0px;
+            padding: 0;
+            line-height: 0.5;
+        }
+        tr {
+            line-height: 0.5;
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 28px;
+        }
+    </style>
     <header class="header" content="Simulação de Cartão"></header>
     <main>
         <div id="container" class="container">
@@ -39,25 +73,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Débito</td><td id="debito">10645.95</td></tr>
-                            <tr><td>Crédito</td><td id="credito">10805.55</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>2X</td><td id="2">5490.45</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>3X</td><td id="3">3687.25</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>4X</td><td id="4">2785.13</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>5X</td><td id="5">2243.85</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>6X</td><td id="6">1882.83</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>7X</td><td id="7">1625.55</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>8X</td><td id="8">1431.81</td></tr>
-                            <tr class="parcela-extra" style="display:none;"><td>9X</td><td id="9">1281.12</td></tr>
-                            <tr><td>10X</td><td id="10">1160.36</td></tr>
-                            <tr><td>11X</td><td id="11">966.19</td></tr>
-                            <tr><td>12X</td><td id="12">979.21</td></tr>
-                            <tr><td>13X</td><td id="13">909.46</td></tr>
-                            <tr><td>14X</td><td id="14">849.60</td></tr>
-                            <tr><td>15X</td><td id="15">797.65</td></tr>
-                            <tr><td>16X</td><td id="16">752.19</td></tr>
-                            <tr><td>17X</td><td id="17">712.02</td></tr>
-                            <tr><td>18X</td><td id="18">676.26</td></tr>
+                            <tr><td class="C1">Débito</td><td id="debito"><p class="Sub-total">10645.95</p></td></tr>
+                            <tr><td class="C1">Crédito</td><td id="credito"><p class="Sub-total">10805.55</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">2X</td><td id="2"><p class="Sub-total">5490.45</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">3X</td><td id="3"><p class="Sub-total">3687.25</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">4X</td><td id="4"><p class="Sub-total">2785.13</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">5X</td><td id="5"><p class="Sub-total">2243.85</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">6X</td><td id="6"><p class="Sub-total">1882.83</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">7X</td><td id="7"><p class="Sub-total">1625.55</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">8X</td><td id="8"><p class="Sub-total">1431.81</p> <p class="total">0000</p></td></tr>
+                            <tr class="parcela-extra" style="display:none;"><td class="C1">9X</td><td id="9"><p class="Sub-total">1281.12</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">10X</td><td id="10"><p class="Sub-total">1160.36</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">11X</td><td id="11"><p class="Sub-total">966.19</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">12X</td><td id="12"><p class="Sub-total">979.21</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">13X</td><td id="13"><p class="Sub-total">909.46</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">14X</td><td id="14"><p class="Sub-total">849.60</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">15X</td><td id="15"><p class="Sub-total">797.65</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">16X</td><td id="16"><p class="Sub-total">752.19</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">17X</td><td id="17"><p class="Sub-total">712.02</p> <p class="total">0000</p></td></tr>
+                            <tr><td class="C1">18X</td><td id="18"><p class="Sub-total">676.26</p> <p class="total">0000</p></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -105,15 +139,16 @@
             Object.entries(taxa).forEach(([chave, taxa_]) => {
                 let resultado = ((taxa_ + 1) * 1.05) * valor / chave;
                 let truncado = resultado.toFixed(2);
-                document.getElementById(chave).innerHTML = truncado;
+                document.getElementById(chave).getElementsByClassName("Sub-total")[0].innerHTML = `R$ ${priceInputMask(truncado)}`;
+                document.getElementById(chave).getElementsByClassName("total")[0].innerHTML = `R$ ${priceInputMask((truncado*chave).toFixed(2))}`;
             });
             let resultado_debito = ((deb_cred.debito + 1) * 1.05) * valor;
             let truncado_debito = resultado_debito.toFixed(2);
-            document.getElementById("debito").innerHTML = truncado_debito;
+            document.getElementById("debito").getElementsByClassName("Sub-total")[0].innerHTML = `R$ ${priceInputMask(truncado_debito)}`;
 
             let resultado_credito = ((deb_cred.credito + 1) * 1.05) * valor;
             let truncado_credito = resultado_credito.toFixed(2);
-            document.getElementById("credito").innerHTML = truncado_credito;
+            document.getElementById("credito").getElementsByClassName("Sub-total")[0].innerHTML = `R$ ${priceInputMask(truncado_credito)}`;
         }
 
         // Botão de expandir parcelas extras
