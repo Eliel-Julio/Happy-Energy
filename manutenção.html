@@ -83,6 +83,7 @@
             </form>
                 <div style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
                 <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total anual): <strong id="precoFinal">R$ 23.968,64</strong></p>
+                <p style="font-size:0.9em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">ou 12 parcelas de <strong id="precoparcela">R$ 1.997,39</strong></p>
                 <p style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Geração estimada: <strong id="geracao">847,90 Kwh/mês</strong></p>
             </div>
             
@@ -93,7 +94,7 @@
 
         function seletion(event){
             const target =event.target;
-
+            
             const targetISmarker = target.checked;
             const nottarget = target.id === "AddLimpeza"? document.getElementById("AddMonitorim") : document.getElementById("AddLimpeza");
             
@@ -102,8 +103,9 @@
             }
             calcular();
         }
-
+        
         function calcular(){
+            function round5(value){return (Math.round(value / 5) * 5)-0.05;}
             const consts = {
                 "ConstIrad":0.139,
                 "ConstLimpSemLucro":25,
@@ -119,15 +121,17 @@
             
             const precoFinalDisplay = document.getElementById('precoFinal');
             const geracaolDisplay = document.getElementById('geracao');
+            const precoParcelaDisplay = document.getElementById('precoparcela');
 
             let Monitoramento = AddMonitorim ? nModulos * nPotencia * consts.ConstIrad / consts.ConstFatiaMonitoramento : 0;
             
             let Limpeza = Isclient ? 
                 (AddMonitorim ? consts.ConstLimpSemLucro * nModulos : consts.ConstLimpComLucro * nModulos) :
                 consts.ConstLimpComLucro * nModulos;
-            let total = (Math.round((Monitoramento*12 + Limpeza*fatorLimpeza) / 5) * 5)-0.05;
+            let total = round5((Monitoramento*12 + Limpeza*fatorLimpeza))
 
             precoFinalDisplay.textContent = `R$ ${priceInputMask(total.toFixed(2))}`;
+            precoParcelaDisplay.textContent = `R$ ${priceInputMask(round5(total / 12).toFixed(2))}`;
             geracaolDisplay.textContent = `${(nModulos * nPotencia * consts.ConstIrad).toFixed(2).replace('.', ',')} Kwh/mês`;
         }
     </script>
