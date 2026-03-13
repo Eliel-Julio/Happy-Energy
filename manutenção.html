@@ -56,11 +56,11 @@
                     <label for="Isclient" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Cliente Happy</label>
                 </div>
                 <div style="margin-top: 16px; display: flex; align-items: center; gap: 10px;">
-                    <input type="checkbox" id="AddMonitorim" onchange="calcular()" checked>
+                    <input type="checkbox" id="AddMonitorim" onchange="calcular(), seletion(event)" checked>
                     <label for="AddMonitorim" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Adicionar Monitoramento</label>
                 </div>
                 <div style="margin-top: 16px; display: flex; align-items: center; gap: 10px;">
-                    <input type="checkbox" id="AddLimpeza" onchange="calcular()" checked>
+                    <input type="checkbox" id="AddLimpeza" onchange="calcular(), seletion(event)" checked>
                     <label for="AddLimpeza" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Adicionar Limpeza</label>
                 </div>
             </div>
@@ -90,6 +90,19 @@
     </main>
     <footer class="footer"></footer>
     <script>
+
+        function seletion(event){
+            const target =event.target;
+
+            const targetISmarker = target.checked;
+            const nottarget = target.id === "AddLimpeza"? document.getElementById("AddMonitorim") : document.getElementById("AddLimpeza");
+            
+            if(!targetISmarker && !nottarget.checked){
+                nottarget.checked = true;
+            }
+            calcular();
+        }
+
         function calcular(){
             const consts = {
                 "ConstIrad":0.139,
