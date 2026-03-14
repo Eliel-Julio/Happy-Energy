@@ -93,16 +93,10 @@
     <script>
 
         function seletion(event){
-            const target =event.target;
-            
-            const targetISmarker = target.checked;
-            const nottarget = target.id === "AddLimpeza"? document.getElementById("AddMonitorim") : document.getElementById("AddLimpeza");
-            
-            if(!targetISmarker && !nottarget.checked){
-                nottarget.checked = true;
-            }
-            calcular();
-        }
+            const targetISmarker = event.target.checked;
+            const nottarget = event.target.id === "AddLimpeza"? document.getElementById("AddMonitorim") : document.getElementById("AddLimpeza");
+            if(!targetISmarker && !nottarget.checked){nottarget.checked = true;}
+            calcular();}
         
         function calcular(){
             function round5(value){return (Math.round(value / 5) * 5)-0.05;}
