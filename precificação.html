@@ -43,6 +43,22 @@
                 to   { transform: translateY(0);     opacity: 1; }
             }
         }
+        #Value-group{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+        
+            #visibility {
+                cursor: pointer;
+                color: var(--cinza-escuro);
+                transition: color 1.18s ease;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        
     </style>
 </head>
 <body onload="definitions()">
@@ -60,9 +76,10 @@
                 </div>
 
                 <label for="custoModulo">Valor de custo(R$)</label>
-                <div class="input-group">
+                <div class="input-group" id="Value-group">
                     <span class="material-icons icon">attach_money</span>
                     <input class="priceInputMask" type="text" id="custoModulo" value="15.000,00" azutocomplete="off" inputmode="numeric" pattern="[0-9,]*" placeholder="Ex: 15000,00" class="priceInputMask">
+                    <span id="visibility" class="material-icons icon" onclick="changevisibity(event)">visibility_off</span>
                 </div>
 
                 <label for="quantidadeModulos">Quantidade de módulos</label>
@@ -105,6 +122,18 @@
     </main>
     <footer class="footer"></footer>
     <script>
+        function changevisibity(event){
+            const input = document.getElementById('custoModulo');
+            const icon = event.target;
+            if(input.type === "text"){
+                input.type = "password";
+                icon.textContent = "visibility";
+            }else{
+                input.type = "text";
+                icon.textContent = "visibility_off";
+            }
+        }
+
         function calcular(){
             const custoInput = document.getElementById('custoModulo');
             const quantidadeInput = document.getElementById('quantidadeModulos');

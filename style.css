@@ -202,7 +202,7 @@ main {
                 align-items: center;
                 gap: 8px;
 
-                input[type="text"], input[type="number"], select{
+                input[type="text"], input[type="number"],input[type="password"], select{
                     padding: 10px 14px;
                     border: 1.5px solid var(--cinza-escuro);
                     border-radius: 8px;
