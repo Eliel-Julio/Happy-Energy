@@ -104,7 +104,8 @@
                 "ConstIrad":0.139,
                 "ConstLimpSemLucro":25,
                 "ConstLimpComLucro":35,
-                "ConstFatiaMonitoramento":30
+                "ConstFatiaMonitoramento":30,
+                "ConstCustoKwh":1.25
             };
 
             const Isclient = document.getElementById("Isclient").checked;
@@ -118,7 +119,8 @@
             const precoParcelaDisplay = document.getElementById('precoparcela');
 
             let Monitoramento = AddMonitorim ? nModulos * nPotencia * consts.ConstIrad / consts.ConstFatiaMonitoramento : 0;
-            
+            Monitoramento *= consts.ConstCustoKwh;
+
             let Limpeza = Isclient ? 
                 (AddMonitorim ? consts.ConstLimpSemLucro * nModulos : consts.ConstLimpComLucro * nModulos) :
                 consts.ConstLimpComLucro * nModulos;
