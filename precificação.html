@@ -33,6 +33,7 @@
             margin-top: 12px;
         }
 
+
         /* animação sutil, respeita preferência por reduzir movimento */
         @media (prefers-reduced-motion: no-preference) {
             #UserAlert {
@@ -114,7 +115,7 @@
                 <label for="semComissionamento" style="margin: 0; font-size: 0.95rem; color: var(--azul-happy);">Desconsiderar comissionamento</label>
             </div>
             <div style="margin-top:24px; padding:18px 14px; background:var(--cinza-claro); border-radius:12px; box-shadow:0 2px 8px rgba(1,36,74,0.07); text-align:center;">
-                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): <strong id="precoFinal">R$ 23.968,64</strong></p>
+                <p style="font-size:1.25em; font-weight:700; color:var(--azul-happy); margin-bottom:10px;">Preço final (custo total): de <small id="precoFinal" style="text-decoration: line-through; opacity: 0.5;">R$ 23.968,64</small> <br> <strong id="precoFinal_dec" style="padding-left: 146px;">por R$ 23.968,64</strong></p>
                 <p style="font-size:1.15em; font-weight:500; color:var(--azul-happy);">Geração estimada: <strong id="geracao">847,90 Kwh/mês</strong></p>
             </div>
             
@@ -139,6 +140,7 @@
             const quantidadeInput = document.getElementById('quantidadeModulos');
             const potenciaInput = document.getElementById('Potencia');
             const precoFinalDisplay = document.getElementById('precoFinal');
+            const precoFinalDisplay_dec = document.getElementById('precoFinal_dec');
             const geracaolDisplay = document.getElementById('geracao');
 
             const custo = parseFloat(custoInput.value.replace('.', '').replace(",","."));
@@ -169,7 +171,8 @@
                 "Promocional":{
                     "Margem": 0.30,
                     "Imposto": 0.07,
-                    "comissionamento": semComissionamento ? 0 : 0.05
+                    // "comissionamento": semComissionamento ? 0 : 0.05
+                    "comissionamento": 0
                 }}
             }
 
@@ -180,17 +183,22 @@
                 });
                 return total;
             }
-
-            const total = (
-                quantidade*consts.instalacao_por_Modulos[StructureType]+
-                consts.Art+
-                consts.Extras[StructureType]+
-                custo)*
-                totalTax(consts.taxas[Modalidade]);
+            function total(modalidade){
+                const principal = (quantidade*consts.instalacao_por_Modulos[StructureType]+consts.Art+consts.Extras[StructureType]+custo);
+                const total = principal*totalTax(consts.taxas[modalidade]);
+                return total;
+            }
+            // const total = (
+            //     quantidade*consts.instalacao_por_Modulos[StructureType]+
+            //     consts.Art+
+            //     consts.Extras[StructureType]+
+            //     custo)*
+            //     totalTax(consts.taxas[Modalidade]);
             
             const geracao = (parseFloat(potenciaInput.value)*quantidade)*consts.iradiação;
 
-            precoFinalDisplay.textContent = `R$ ${priceInputMask(total.toFixed(2))}`;
+            precoFinalDisplay.textContent = `R$ ${priceInputMask(total("Normal").toFixed(2))}`;
+            precoFinalDisplay_dec.textContent = `por R$ ${priceInputMask(total("Promocional").toFixed(2))}`;
             geracaolDisplay.textContent = `${geracao.toFixed(2).replace('.', ',')} Kwh/mês`; 
         }
     </script>
